@@ -35,5 +35,15 @@ curl -X GET http://localhost:8080/users
 curl -X GET http://localhost:8080/users/{uuid}
 ```
 
+#### Get all media
+```sh
+curl -X GET curl -X GET http://localhost:8080/media
+```
+
+#### Search media by query
+```sh
+curl -X GET curl -X GET "http://localhost:8080/media?q=Media 1"
+```
+
 ## 📌 Notes
 - Data is stored in memory (no database required for now).
