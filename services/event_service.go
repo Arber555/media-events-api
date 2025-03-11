@@ -76,41 +76,25 @@ func GetEventByID(id string) (models.Event, bool) {
 	return models.Event{}, false
 }
 
-func RegisterUserForEvent(userID, eventID, role string) error {
-	parsedEventID, err := uuid.Parse(eventID)
-	if err != nil {
-		return errors.New("invalid event ID")
-	}
-
-	parsedUserID, err := uuid.Parse(userID)
-	if err != nil {
-		return errors.New("invalid user ID")
-	}
-
-	userExists := false
-	for _, user := range userList {
-		if user.ID == parsedUserID {
-			userExists = true
-			break
-		}
-	}
-
-	if !userExists {
+func RegisterUserForEvent(reg models.EventRegistration) error {
+	user, err := GetUserByID(reg.UserID.String())
+	if err != true {
 		return errors.New("user not found")
 	}
 
 	for i, event := range eventList {
-		if event.ID == parsedEventID {
+		if event.ID == reg.EventID {
 			for _, participant := range event.Participants {
-				if participant.UserID == parsedUserID.String() {
+				if participant.UserID == user.ID {
 					return errors.New("user is already registered for this event")
 				}
 			}
 
 			event.Participants = append(event.Participants, models.Participant{
-				UserID: parsedUserID.String(),
-				Role:   role,
+				UserID: user.ID,
+				Role:   reg.Role,
 			})
+
 			eventList[i] = event
 			return nil
 		}

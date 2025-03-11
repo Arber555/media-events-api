@@ -3,7 +3,8 @@ package handlers
 import (
 	"media-events-api/services"
 	"net/http"
-
+	"media-events-api/models"
+	"github.com/google/uuid"
 	"github.com/gin-gonic/gin"
 )
 
@@ -38,7 +39,25 @@ func RegisterForEvent(c *gin.Context) {
 		return
 	}
 
-	err := services.RegisterUserForEvent(req.UserID, req.EventID, req.Role)
+	userID, err := uuid.Parse(req.UserID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID"})
+		return
+	}
+
+	eventID, err := uuid.Parse(req.EventID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid event ID"})
+		return
+	}
+
+	reg := models.EventRegistration{
+		UserID:  userID, 
+		EventID: eventID, 
+		Role:    req.Role,
+	}
+
+	err = services.RegisterUserForEvent(reg)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

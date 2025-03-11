@@ -12,7 +12,13 @@ type Event struct {
 	UpdatedAt    string       `json:"updated_at"`
 }
 
+type EventRegistration struct {
+    UserID  uuid.UUID `json:"user_id"`  
+    EventID uuid.UUID `json:"event_id"` 
+    Role    string    `json:"role"`     
+}
+
 type Participant struct {
-	UserID string `json:"user_id"`
+	UserID uuid.UUID `json:"user_id"`
 	Role   string `json:"role"`
 }
