@@ -78,7 +78,7 @@ func GetEventByID(id string) (models.Event, bool) {
 
 func RegisterUserForEvent(reg models.EventRegistration) error {
 	user, err := GetUserByID(reg.UserID.String())
-	if err != true {
+	if err != nil {
 		return errors.New("user not found")
 	}
 
