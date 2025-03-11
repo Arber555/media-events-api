@@ -87,8 +87,26 @@ func RegisterUserForEvent(userID, eventID, role string) error {
 		return errors.New("invalid user ID")
 	}
 
+	userExists := false
+	for _, user := range userList {
+		if user.ID == parsedUserID {
+			userExists = true
+			break
+		}
+	}
+
+	if !userExists {
+		return errors.New("user not found")
+	}
+
 	for i, event := range eventList {
 		if event.ID == parsedEventID {
+			for _, participant := range event.Participants {
+				if participant.UserID == parsedUserID.String() {
+					return errors.New("user is already registered for this event")
+				}
+			}
+
 			event.Participants = append(event.Participants, models.Participant{
 				UserID: parsedUserID.String(),
 				Role:   role,
