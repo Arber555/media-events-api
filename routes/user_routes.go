@@ -9,7 +9,7 @@ import (
 func RegisterUserRoutes(r *gin.Engine) {
 	users := r.Group("/users")
 	{
-		users.GET("/", handlers.GetUsers)
+		users.GET("", handlers.GetUsers)
 		users.GET("/:id", handlers.GetUserByID)
 	}
 }

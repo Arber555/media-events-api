@@ -12,6 +12,7 @@ func main() {
 	// Register routes
 	routes.RegisterUserRoutes(r)
 	routes.RegisterMediaRoutes(r)
+	routes.RegisterEventRoutes(r)
 
 	r.Run(":8080") // Start server on port 8080
 }
