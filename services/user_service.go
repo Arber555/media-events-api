@@ -1,6 +1,7 @@
 package services
 
 import (
+	"errors"
 	"media-events-api/models"
 
 	"github.com/google/uuid"
@@ -15,16 +16,16 @@ func GetAllUsers() []models.User {
 	return users
 }
 
-func GetUserByID(id string) (models.User, bool) {
+func GetUserByID(id string) (*models.User, error) {
 	parsedID, err := uuid.Parse(id)
 	if err != nil {
-		return models.User{}, false
+		return nil, errors.New("invalid UUID format")
 	}
 
 	for _, user := range users {
 		if user.ID == parsedID {
-			return user, true
+			return &user, nil // Return a pointer instead of a struct
 		}
 	}
-	return models.User{}, false
+	return nil, errors.New("user not found")
 }

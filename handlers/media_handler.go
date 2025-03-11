@@ -15,9 +15,9 @@ func GetMedia(c *gin.Context) {
 
 func GetMediaByID(c *gin.Context) {
 	id := c.Param("id")
-	media, found := services.GetMediaByID(id)
-	if !found {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Media not found"})
+	media, err := services.GetMediaByID(id)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
 	c.JSON(http.StatusOK, media)

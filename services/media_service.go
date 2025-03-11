@@ -1,6 +1,7 @@
 package services
 
 import (
+	"errors"
 	"media-events-api/models"
 	"strings"
 
@@ -26,16 +27,16 @@ func SearchMedia(query string) []models.Media {
 	return filtered
 }
 
-func GetMediaByID(id string) (models.Media, bool) {
+func GetMediaByID(id string) (*models.Media, error) {
 	parsedID, err := uuid.Parse(id)
 	if err != nil {
-		return models.Media{}, false
+		return nil, errors.New("invalid UUID format")
 	}
 
 	for _, media := range mediaList {
 		if media.ID == parsedID {
-			return media, true
+			return &media, nil
 		}
 	}
-	return models.Media{}, false
+	return nil, errors.New("media not found")
 }
