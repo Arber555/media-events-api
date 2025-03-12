@@ -2,29 +2,70 @@ package services
 
 import (
 	"errors"
-	"media-events-api/models"
 	"strings"
+
+	"media-events-api/models"
 
 	"github.com/google/uuid"
 )
 
 var mediaList = []models.Media{
-	{ID: uuid.New(), Title: "Media 1", Description: "Description 1", Transcript: "Transcript 1", URL: "http://example.com/1", CreatedAt: "2025-01-01T00:00:00Z", UpdatedAt: "2025-01-01T00:00:00Z"},
-	{ID: uuid.New(), Title: "Media 2", Description: "Description 2", Transcript: "Transcript 2", URL: "http://example.com/2", CreatedAt: "2025-01-02T00:00:00Z", UpdatedAt: "2025-01-02T00:00:00Z"},
+	{
+		ID:          uuid.MustParse("550e8400-e29b-41d4-a716-446655440000"),
+		Title:       "AI in Healthcare",
+		Description: "How AI is revolutionizing medicine.",
+		Transcript:  "AI is used in diagnostics...",
+		URL:         "http://example.com/ai-healthcare",
+		MediaType:   "Video",
+		Topics:      []string{"AI", "Health"},
+		CreatedAt:   "2025-01-01T00:00:00Z",
+		UpdatedAt:   "2025-01-01T00:00:00Z",
+	},
+	{
+		ID:          uuid.MustParse("550e8400-e29b-41d4-a716-446655440001"),
+		Title:       "Space Exploration",
+		Description: "NASA's new space missions.",
+		Transcript:  "NASA is launching a new rover...",
+		URL:         "http://example.com/space",
+		MediaType:   "Audio",
+		Topics:      []string{"Space", "Science"},
+		CreatedAt:   "2025-01-02T00:00:00Z",
+		UpdatedAt:   "2025-01-02T00:00:00Z",
+	},
 }
 
-func SearchMedia(query string) []models.Media {
-	if query == "" {
-		return mediaList
-	}
-	filtered := []models.Media{}
+// Search and filter media based on query, topics, and mediaType
+func SearchMedia(query, topic, mediaType string) []models.Media {
+	var filtered []models.Media
+
 	for _, media := range mediaList {
-		if strings.Contains(strings.ToLower(media.Title), strings.ToLower(query)) ||
-			strings.Contains(strings.ToLower(media.Description), strings.ToLower(query)) {
+		// Check if the query matches the title or description
+		matchesQuery := query == "" || strings.Contains(strings.ToLower(media.Title), strings.ToLower(query)) ||
+			strings.Contains(strings.ToLower(media.Description), strings.ToLower(query))
+
+		// Check if the media matches the topic
+		matchesTopic := topic == "" || containsIgnoreCase(media.Topics, topic)
+
+		// Check if the mediaType matches
+		matchesType := mediaType == "" || strings.EqualFold(media.MediaType, mediaType)
+
+		// If all filters match, add to the results
+		if matchesQuery && matchesTopic && matchesType {
 			filtered = append(filtered, media)
 		}
 	}
+
 	return filtered
+}
+
+// Helper function to check if a slice contains a value (case-insensitive)
+func containsIgnoreCase(slice []string, value string) bool {
+	for _, item := range slice {
+		if strings.EqualFold(item, value) {
+			return true
+		}
+	}
+	return false
 }
 
 func GetMediaByID(id string) (*models.Media, error) {

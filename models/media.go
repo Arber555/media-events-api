@@ -8,6 +8,8 @@ type Media struct {
 	Description string    `json:"description"`
 	Transcript  string    `json:"transcript"`
 	URL         string    `json:"url"`
+	MediaType   string    `json:"mediaType"` // Image, Video, or Audio
+	Topics      []string  `json:"topics"`
 	CreatedAt   string    `json:"created_at"`
 	UpdatedAt   string    `json:"updated_at"`
 }

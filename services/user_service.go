@@ -8,8 +8,8 @@ import (
 )
 
 var users = []models.User{
-	{ID: uuid.New(), Name: "John", LastName: "Doe", CreatedAt: "2025-01-01T00:00:00Z", UpdatedAt: "2025-01-01T00:00:00Z"},
-	{ID: uuid.New(), Name: "Jane", LastName: "Doe", CreatedAt: "2025-01-02T00:00:00Z", UpdatedAt: "2025-01-02T00:00:00Z"},
+	{ID: uuid.MustParse("6b1d1f30-fcb2-11ec-b939-0242ac120002"), Name: "John", LastName: "Doe", CreatedAt: "2025-01-01T00:00:00Z", UpdatedAt: "2025-01-01T00:00:00Z"},
+	{ID: uuid.MustParse("6b1d1f30-fcb2-11ec-b939-0242ac120003"), Name: "Jane", LastName: "Doe", CreatedAt: "2025-01-02T00:00:00Z", UpdatedAt: "2025-01-02T00:00:00Z"},
 }
 
 func GetAllUsers() []models.User {

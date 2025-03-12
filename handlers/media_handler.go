@@ -7,9 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Supports filtering by query, topic, and mediaType
 func GetMedia(c *gin.Context) {
 	query := c.Query("q")
-	mediaList := services.SearchMedia(query)
+	topic := c.Query("topic")
+	mediaType := c.Query("mediaType")
+
+	mediaList := services.SearchMedia(query, topic, mediaType)
 	c.JSON(http.StatusOK, mediaList)
 }
 
