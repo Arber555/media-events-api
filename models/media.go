@@ -1,6 +1,10 @@
 package models
 
-import "github.com/google/uuid"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Media struct {
 	ID          uuid.UUID `json:"id"`
@@ -10,6 +14,6 @@ type Media struct {
 	URL         string    `json:"url"`
 	MediaType   string    `json:"mediaType"` // Image, Video, or Audio
 	Topics      []string  `json:"topics"`
-	CreatedAt   string    `json:"created_at"`
-	UpdatedAt   string    `json:"updated_at"`
+	CreatedAt   time.Time    `json:"created_at"`
+	UpdatedAt   time.Time    `json:"updated_at"`
 }

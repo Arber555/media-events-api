@@ -3,13 +3,13 @@ package services
 import (
 	"errors"
 	"media-events-api/models"
-
+	"time"
 	"github.com/google/uuid"
 )
 
 var users = []models.User{
-	{ID: uuid.MustParse("6b1d1f30-fcb2-11ec-b939-0242ac120002"), Name: "John", LastName: "Doe", CreatedAt: "2025-01-01T00:00:00Z", UpdatedAt: "2025-01-01T00:00:00Z"},
-	{ID: uuid.MustParse("6b1d1f30-fcb2-11ec-b939-0242ac120003"), Name: "Jane", LastName: "Doe", CreatedAt: "2025-01-02T00:00:00Z", UpdatedAt: "2025-01-02T00:00:00Z"},
+	{ID: uuid.MustParse("6b1d1f30-fcb2-11ec-b939-0242ac120002"), Name: "John", LastName: "Doe", CreatedAt:   time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC), UpdatedAt: time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC)},
+	{ID: uuid.MustParse("6b1d1f30-fcb2-11ec-b939-0242ac120003"), Name: "Jane", LastName: "Doe", CreatedAt:   time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC), UpdatedAt: time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC)},
 }
 
 func GetAllUsers() []models.User {

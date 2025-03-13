@@ -3,7 +3,7 @@ package services
 import (
 	"errors"
 	"strings"
-
+	"time"
 	"media-events-api/models"
 
 	"github.com/google/uuid"
@@ -18,8 +18,8 @@ var mediaList = []models.Media{
 		URL:         "http://example.com/ai-healthcare",
 		MediaType:   "Video",
 		Topics:      []string{"AI", "Health"},
-		CreatedAt:   "2025-01-01T00:00:00Z",
-		UpdatedAt:   "2025-01-01T00:00:00Z",
+		CreatedAt:   time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC),
+		UpdatedAt:   time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC),
 	},
 	{
 		ID:          uuid.MustParse("550e8400-e29b-41d4-a716-446655440001"),
@@ -29,8 +29,8 @@ var mediaList = []models.Media{
 		URL:         "http://example.com/space",
 		MediaType:   "Audio",
 		Topics:      []string{"Space", "Science"},
-		CreatedAt:   "2025-01-02T00:00:00Z",
-		UpdatedAt:   "2025-01-02T00:00:00Z",
+		CreatedAt:   time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC),
+		UpdatedAt:   time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC),
 	},
 }
 

@@ -1,15 +1,19 @@
 package models
 
-import "github.com/google/uuid"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Event struct {
 	ID           uuid.UUID    `json:"id"`
 	Title        string       `json:"title"`
 	Description  string       `json:"description"`
 	Participants []Participant `json:"participants"`
-	Date         string       `json:"date"`
-	CreatedAt    string       `json:"created_at"`
-	UpdatedAt    string       `json:"updated_at"`
+	Date         time.Time       `json:"date"`
+	CreatedAt    time.Time       `json:"created_at"`
+	UpdatedAt    time.Time       `json:"updated_at"`
 }
 
 type EventRegistration struct {

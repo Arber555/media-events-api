@@ -15,17 +15,17 @@ var eventList = []models.Event{
 		ID:          uuid.MustParse("8b3a07a2-fcb2-11ec-b939-0242ac120004"),
 		Title:       "Spring Conference 2025",
 		Description: "Join us for a Spring Conference of fellowship, worship, and spiritual renewal.",
-		Date:        "2025-04-15T10:00:00Z",
-		CreatedAt:   "2025-03-01T00:00:00Z",
-		UpdatedAt:   "2025-03-01T00:00:00Z",
+		Date:        time.Date(2025, 4, 15, 10, 0, 0, 0, time.UTC), 
+		CreatedAt:   time.Date(2025, 3, 1, 0, 0, 0, 0, time.UTC),
+		UpdatedAt:   time.Date(2025, 3, 1, 0, 0, 0, 0, time.UTC),
 	},
 	{
 		ID:          uuid.MustParse("8b3a07a2-fcb2-11ec-b939-0242ac120005"),
 		Title:       "Music Festival",
 		Description: "Celebrate faith and music at our church uplifting Spring Music Festival!",
-		Date:        "2025-07-10T15:00:00Z",
-		CreatedAt:   "2025-03-02T00:00:00Z",
-		UpdatedAt:   "2025-03-02T00:00:00Z",
+		Date:        time.Date(2025, 7, 10, 15, 0, 0, 0, time.UTC),
+		CreatedAt:   time.Date(2025, 3, 2, 0, 0, 0, 0, time.UTC),
+		UpdatedAt:   time.Date(2025, 3, 2, 0, 0, 0, 0, time.UTC),
 	},
 }
 
