@@ -37,10 +37,7 @@ func SearchEvents(location, dateFrom, dateTo string) []models.Event {
 			continue
 		}
 
-		eventDate, err := time.Parse(time.RFC3339, event.Date)
-		if err != nil {
-			continue
-		}
+		eventDate := event.Date
 
 		if dateFrom != "" {
 			fromDate, _ := time.Parse(time.RFC3339, dateFrom)
